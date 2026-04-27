@@ -254,7 +254,7 @@ gui_show_progress() {
     local model_name="$1"
     local model_cmd="$2"
     local result_file
-    result_file=$(mktemp)
+    result_file=$(mktemp) || { log_error "Failed to create temp file"; return 1; }
     echo "1" > "$result_file"
 
     {
@@ -280,7 +280,7 @@ gui_show_progress() {
         --width=400 2>/dev/null
 
     local install_result
-    install_result=$(cat "$result_file")
+    install_result=$(<"$result_file")
     rm -f "$result_file"
     return "$install_result"
 }
