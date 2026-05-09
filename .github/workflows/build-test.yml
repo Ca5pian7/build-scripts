@@ -3,9 +3,6 @@ name: Build OlyntheOS ISO
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-26.04
